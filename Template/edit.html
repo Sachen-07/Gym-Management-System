@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href=" {% static 'css/index.css' %} " />
+
+</head>
+<body>
+    
+      <div class="container">
+        <h2>Gym Membership Registration</h2>
+        <form action="{% url 'edit' todo.id %} " method="POST">
+            {% csrf_token %}
+            <label for="fname">Full name:</label>
+            <input type="text" value="{{todo.name}}" id="fname" name="name" required>
+    
+           
+    
+            <label for="email">Email:</label>
+            <input type="email" value="{{todo.email}}" id="email" name="email" required>
+    
+            <label for="age">Age</label>
+            <input type="number" value="{{todo.age}}" id="age" name="age" required>
+            
+            <label for="phone">Phone Number:</label>
+            <input type="tel" value="{{todo.phone}}" id="phone" name="phone" required>
+    
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                {% if todo.gender == "male" %} 
+                <option value="male" selected >Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+                {% elif todo.gender == "female" %} 
+                <option value="male"  >Male</option>
+                <option value="female" selected >Female</option>
+                <option value="other">Other</option>
+                {% elif todo.gender == "other" %} 
+                <option value="male"  >Male</option>
+                <option value="female"  >Female</option>
+                <option value="other" selected >Other</option>
+                {% endif %}
+            </select>
+    
+            <label for="membership">Membership Type:</label>
+            <select id="membership"  name="membership" required>
+                <option value="">Select Membership</option>
+                {% if todo.membership == "monthly" %} 
+                <option value="monthly" selected >Monthly</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="yearly">Yearly</option>
+                {% elif todo.membership == "quarterly" %} 
+                <option value="monthly">Monthly</option>
+                <option value="quarterly" selected >Quarterly</option>
+                <option value="yearly">Yearly</option>
+                {% elif todo.membership == "yearly" %} 
+                <option value="monthly">Monthly</option>
+                <option value="quarterly" >Quarterly</option>
+                <option value="yearly" selected >Yearly</option>
+                {% endif %}
+
+            </select>
+    
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
